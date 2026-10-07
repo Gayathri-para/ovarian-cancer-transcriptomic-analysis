@@ -1,0 +1,14 @@
+# Example configuration for the reconstructed workflow.
+# Replace these example paths with the actual project inputs before execution.
+
+samples:
+  sample01:
+    R1: "data/raw/sample01_R1.fastq.gz"
+    R2: "data/raw/sample01_R2.fastq.gz"
+  sample02:
+    R1: "data/raw/sample02_R1.fastq.gz"
+    R2: "data/raw/sample02_R2.fastq.gz"
+
+reference:
+  genome: "references/GRCh38"
+  gtf: "references/annotation.gtf"

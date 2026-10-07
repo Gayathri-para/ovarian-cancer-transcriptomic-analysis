@@ -79,3 +79,7 @@ Completed as a B.Tech Bioinformatics dissertation / internship project at BRIC-C
 B.Tech Bioinformatics, Vignan's Foundation for Science & Technology
 
 > This repository documents academic research and does not represent a clinically validated diagnostic or therapeutic model.
+
+## Workflow files
+
+Reconstructed Nextflow and Snakemake workflow templates are included under `nextflow/` and `snakemake/`. They were recreated from the documented project methodology because the original workflow files were not retained; they are not presented as the exact historical scripts.

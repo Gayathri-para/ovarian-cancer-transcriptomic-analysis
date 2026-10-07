@@ -1,0 +1,46 @@
+"""
+Reconstructed Snakemake workflow for the ovarian cancer RNA-seq project.
+
+The original Snakemake file was not retained. This is a portfolio/reproducibility
+representation reconstructed from the documented project workflow, not the exact
+historical script.
+"""
+
+configfile: "config.yaml"
+
+SAMPLES = list(config["samples"].keys())
+
+rule all:
+    input:
+        expand("results/fastqc/{sample}_fastqc.html", sample=SAMPLES),
+        expand("results/trimmed/{sample}_R1_val_1.fq.gz", sample=SAMPLES),
+        expand("results/trimmed/{sample}_R2_val_2.fq.gz", sample=SAMPLES)
+
+rule fastqc:
+    input:
+        r1=lambda wc: config["samples"][wc.sample]["R1"],
+        r2=lambda wc: config["samples"][wc.sample]["R2"]
+    output:
+        html="results/fastqc/{sample}_fastqc.html",
+        zip="results/fastqc/{sample}_fastqc.zip"
+    shell:
+        """
+        mkdir -p results/fastqc
+        fastqc {input.r1} {input.r2} --outdir results/fastqc
+        """
+
+rule trim_galore:
+    input:
+        r1=lambda wc: config["samples"][wc.sample]["R1"],
+        r2=lambda wc: config["samples"][wc.sample]["R2"]
+    output:
+        r1="results/trimmed/{sample}_R1_val_1.fq.gz",
+        r2="results/trimmed/{sample}_R2_val_2.fq.gz"
+    shell:
+        """
+        mkdir -p results/trimmed
+        trim_galore --paired {input.r1} {input.r2} --output_dir results/trimmed
+        """
+
+# Additional alignment, quantification and DESeq2 rules should be filled in
+# with the exact reference files, metadata and parameters used in the project.
