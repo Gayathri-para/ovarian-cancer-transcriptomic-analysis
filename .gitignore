@@ -1,0 +1,17 @@
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.sam
+*.cram
+*.log
+.env
+.venv/
+__pycache__/
+.Rhistory
+.RData
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
